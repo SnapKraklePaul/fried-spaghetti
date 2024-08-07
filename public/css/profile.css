@@ -1,0 +1,114 @@
+.profile-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 100px auto;
+    background-color: var(--pure-white);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.profile-sidebar {
+    flex: 1;
+    padding: 30px;
+    background-color: var(--primary-blue);
+    color: var(--pure-white);
+    border-radius: 8px 0 0 8px;
+    text-align: center;
+}
+
+.profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid var(--pure-white);
+}
+
+.profile-sidebar h2 {
+    margin-bottom: 10px;
+}
+
+.profile-sidebar p {
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-red);
+    color: var(--pure-white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #D32F2F;
+}
+
+.profile-main {
+    flex: 3;
+    padding: 30px;
+}
+
+.profile-section {
+    margin-bottom: 40px;
+}
+
+.profile-section h2 {
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-blue);
+    padding-bottom: 10px;
+}
+
+#profile-info p {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    color: var(--primary-blue);
+}
+
+.edit-icon {
+    margin-left: 10px;
+    color: var(--primary-blue);
+    cursor: pointer;
+}
+
+.course-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.course-list li {
+    background-color: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.certificate-links {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+    }
+
+    .profile-sidebar {
+        border-radius: 8px 8px 0 0;
+    }
+}

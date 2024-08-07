@@ -1,0 +1,7 @@
+in the admin dashboard under user management - when i click "view" to view a user, i am taken to a user detail page - i noticed if the user i click on is not an admin, my navbar updates and the "admin dashboard" link goes away, if the user i click on is an admin, the "admin dashboard" link remains
+
+check users ability to update their profile information
+
+while on the admin dashboard, i would like a secondary navbar to be visible with the nav links for user management, product management, quiz management etc. 
+
+allow  1 quiz to be added to multiple courses so that multiple courses have access to the same quiz. 

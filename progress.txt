@@ -1,0 +1,108 @@
+Backend Framework:
+
+Node.js with Express.js
+MongoDB for database storage
+Mongoose for object modeling
+
+
+Authentication System:
+
+User registration and login functionality
+JWT (JSON Web Tokens) for session management
+Tokens stored in cookies for persistent login
+Logout functionality
+
+
+User Model:
+
+Includes fields for firstName, lastName, email, password
+Includes isAdmin boolean for admin privileges
+Password hashing implemented for security
+
+
+Middleware:
+
+Authentication middleware to protect routes
+Admin check middleware for admin-only routes
+
+
+Views/Frontend:
+
+EJS templating engine for server-side rendering
+Layouts implemented for consistent page structure
+Separate views for home, login, registration, and profile pages
+Dynamic navbar that updates based on user authentication status
+
+
+Routes:
+
+Home route
+User routes for registration, login, logout, and profile
+Beginnings of an admin route structure
+
+
+Security Features:
+
+Password hashing
+JWT for secure authentication
+Protected routes requiring authentication
+
+
+Database Connection:
+
+MongoDB connection set up with environment variables
+
+
+Environment Configuration:
+
+dotenv used for managing environment variables
+
+
+Static File Serving:
+
+Public directory set up for serving static assets
+
+
+User Interface:
+
+Basic styling implemented
+Responsive design considerations (viewport meta tag)
+
+
+User Flow:
+
+Users can register, login, view their profile, and logout
+Admin users see an additional link in the navbar
+
+
+Error Handling:
+
+Basic error handling implemented for authentication processes
+
+
+Code Structure:
+
+Separated routes, models, and views
+Middleware in its own directory
+
+
+
+Current Functionality:
+
+Users can register for an account
+Users can log in and log out
+Authenticated users can view their profile
+The navbar dynamically updates based on authentication status
+Admin users see an additional "Admin Dashboard" link (functionality not yet implemented)
+User sessions persist across page reloads due to JWT stored in cookies
+
+Areas for Potential Improvement:
+
+Implementing the admin dashboard functionality
+Enhancing error handling and user feedback
+Adding password reset functionality
+Implementing CSRF protection
+Setting up testing
+Optimizing performance
+Enhancing security measures
+Implementing logging

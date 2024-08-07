@@ -1,0 +1,18 @@
+<div class="product-edit-content">
+    <h2>Edit Product</h2>
+    <form data-product-id="<%= product._id %>">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="<%= product.title %>" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required><%= product.description %></textarea>
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" value="<%= product.price %>" step="0.01" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Product</button>
+    </form>
+</div>

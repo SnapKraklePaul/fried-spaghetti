@@ -1,0 +1,54 @@
+<h1>Stripe Checkout</h1>
+
+<h2>Order Summary</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% cartItems.forEach(item => { %>
+      <tr>
+        <td><%= item.title %></td>
+        <td>$<%= item.price.toFixed(2) %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td><strong>$<%= total.toFixed(2) %></strong></td>
+    </tr>
+  </tfoot>
+</table>
+
+<button id="checkout-button">Pay with Stripe</button>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  var stripe = Stripe('<%= process.env.STRIPE_PUBLISHABLE_KEY %>');
+  var checkoutButton = document.getElementById('checkout-button');
+
+  checkoutButton.addEventListener('click', function() {
+    fetch('/create-checkout-session', {
+      method: 'POST',
+    })
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(session) {
+      return stripe.redirectToCheckout({ sessionId: session.id });
+    })
+    .then(function(result) {
+      if (result.error) {
+        alert(result.error.message);
+      }
+    })
+    .catch(function(error) {
+      console.error('Error:', error);
+    });
+  });
+</script>

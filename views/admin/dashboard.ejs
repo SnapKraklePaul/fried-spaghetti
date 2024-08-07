@@ -1,0 +1,96 @@
+<!-- <h1>Admin Dashboard</h1>
+<nav>
+  <ul>
+    <li><a href="/admin/users">User Management</a></li>
+    <li><a href="/admin/products">Product Management</a></li>
+    <li><a href="/admin/quizzes">Quiz Management</a></li>
+    <li><a href="/admin/orders">Order Management</a></li>
+    
+  </ul>
+</nav>
+<div>
+  <p>Total Users: <%= userCount %></p>
+  <p>Total Products: <%= productCount %></p>
+  <p>Total Quizzes: <%= quizCount %></p>
+  <p>Total Orders: <%= orderCount %></p>
+  
+</div>
+
+<h2>Quick Actions</h2>
+<div>
+  <h3>Generate Sales Report</h3>
+  <form id="salesReportForm">
+    <label for="reportMonth">Month:</label>
+    <input type="month" id="reportMonth" name="reportMonth" required>
+    <button type="submit">Generate Report</button>
+  </form>
+</div>
+
+<div id="reportResult"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="/js/admin-dashboard.js"></script> -->
+
+<div class="admin-container">
+  <aside class="admin-sidebar">
+      <h1>Admin Dashboard</h1>
+      <nav>
+          <ul>
+              <li><a href="/admin/users"><i class="fas fa-users"></i> User Management</a></li>
+              <li><a href="/admin/products"><i class="fas fa-box"></i> Product Management</a></li>
+              <li><a href="/admin/quizzes"><i class="fas fa-question-circle"></i> Quiz Management</a></li>
+              <li><a href="/admin/orders"><i class="fas fa-shopping-cart"></i> Order Management</a></li>
+              <!-- <li><a href="/admin/sales-report"><i class="fas fa-chart-line"></i> Sales Reports</a></li> -->
+          </ul>
+      </nav>
+  </aside>
+  <main class="admin-main">
+      <div class="admin-header">
+          <h2>Overview</h2>
+      </div>
+      <div class="admin-stats">
+          <div class="stat-card">
+              <i class="fas fa-users"></i>
+              <h3>Total Users</h3>
+              <p><%= userCount %></p>
+          </div>
+          <div class="stat-card">
+              <i class="fas fa-box"></i>
+              <h3>Total Products</h3>
+              <p><%= productCount %></p>
+          </div>
+          <div class="stat-card">
+              <i class="fas fa-question-circle"></i>
+              <h3>Total Quizzes</h3>
+              <p><%= quizCount %></p>
+          </div>
+          <div class="stat-card">
+              <i class="fas fa-shopping-cart"></i>
+              <h3>Total Orders</h3>
+              <p><%= orderCount %></p>
+          </div>
+          <!-- <div class="stat-card">
+              <i class="fas fa-dollar-sign"></i>
+              <h3>Total Sales</h3>
+              <p>$<%= totalSales.toFixed(2) %></p>
+          </div> -->
+      </div>
+      <div class="admin-actions">
+          <h2>Quick Actions</h2>
+          <div class="action-card">
+              <h3>Generate Sales Report</h3>
+              <form id="salesReportForm">
+                  <div class="form-group">
+                      <label for="reportMonth">Month:</label>
+                      <input type="month" id="reportMonth" name="reportMonth" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Generate Report</button>
+              </form>
+          </div>
+      </div>
+      <div id="reportResult" class="report-result"></div>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="/js/admin-dashboard.js"></script>

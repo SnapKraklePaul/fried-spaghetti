@@ -1,0 +1,80 @@
+<!-- <h1>Checkout</h1>
+
+<h2>Select Payment Method</h2>
+
+<div class="payment-options">
+  <a href="/checkout/stripe" class="btn btn-primary">Pay with Stripe</a>
+  <a href="/checkout/paypal" class="btn btn-primary">Pay with PayPal</a>
+</div>
+
+<h2>Order Summary</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% cartItems.forEach(item => { %>
+      <tr>
+        <td><%= item.title %></td>
+        <td>$<%= item.price.toFixed(2) %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td><strong>$<%= total.toFixed(2) %></strong></td>
+    </tr>
+  </tfoot>
+</table> -->
+
+
+<link rel="stylesheet" href="/css/checkout.css">
+
+<div class="checkout-container">
+  <h1>Checkout</h1>
+
+  <div class="order-summary">
+    <h2>Order Summary</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% cartItems.forEach(item => { %>
+          <tr>
+            <td><%= item.title %></td>
+            <td>$<%= item.price.toFixed(2) %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td><strong>$<%= total.toFixed(2) %></strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h2>Select Payment Method</h2>
+  <div class="payment-options">
+    <div class="payment-option">
+      <a href="/checkout/paypal" class="btn btn-primary">
+        <img src="/images/paypal-logo.png" alt="PayPal">
+        Pay with PayPal
+      </a>
+    </div>
+  </div>
+
+  <div class="cart-actions">
+    <a href="/cart" class="btn btn-secondary">Back to Cart</a>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<!-- <% if(messages.info_msg) { %>
+  <div class="alert alert-info">
+    <%= messages.info_msg %>
+  </div>
+<% } %>
+
+
+<h1><%= course.title %></h1>
+
+<div class="course-content">
+  
+  <p>Course content is coming soon!</p>
+</div>
+
+<% if (user.quizScores && user.quizScores.get(course._id.toString())) { %>
+  <p>Your quiz score: <%= user.quizScores.get(course._id.toString()).toFixed(2) %>%</p>
+  <% if (user.completedCourses.includes(course._id)) { %>
+    <p>Congratulations! You have completed this course.</p>
+  <% } else { %>
+    <p>You have taken the quiz, but haven't passed yet. Keep studying!</p>
+  <% } %>
+<% } %>
+
+<a href="/quiz/<%= course._id %>" class="btn btn-primary">Take Quiz</a> -->
+
+
+<link rel="stylesheet" href="/css/courses.css">
+
+<div class="course-content-container">
+  <div class="course-header">
+    <h1><%= course.title %></h1>
+    <div class="course-actions">
+      <a href="/profile" class="btn btn-secondary">Back to Profile</a>
+      <a href="/quiz/<%= course._id %>" class="btn btn-primary" id="take-quiz">Take Quiz</a>
+    </div>
+  </div>
+
+  <% if(locals.messages && messages.info_msg) { %>
+    <div class="alert alert-info">
+      <%= messages.info_msg %>
+    </div>
+  <% } %>
+
+  <div class="course-content-main">
+    <div class="slideshow-container">
+      <div class="slides">
+        <% for(let i = 1; i <= 10; i++) { %>
+          <div class="slide">
+            <h2>Slide <%= i %></h2>
+            <% if(i % 2 === 0) { %>
+              <img src="https://picsum.photos/800/400?random=<%= i %>" alt="Random image <%= i %>">
+            <% } else { %>
+              <p>This is some sample text for slide <%= i %>. In a real course, this would contain the actual course material.</p>
+            <% } %>
+          </div>
+        <% } %>
+      </div>
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+      <div class="slide-counter">Slide <span id="current-slide">1</span> of 10</div>
+    </div>
+
+    <div class="course-progress">
+      <% if (user.quizScores && user.quizScores.get(course._id.toString())) { %>
+        <p>Your quiz score: <%= user.quizScores.get(course._id.toString()).toFixed(2) %>%</p>
+        <% if (user.completedCourses.includes(course._id)) { %>
+          <p class="completion-message">Congratulations! You have completed this course.</p>
+        <% } else { %>
+          <p>You have taken the quiz, but haven't passed yet. Keep studying!</p>
+        <% } %>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<script src="/js/courseContent.js"></script>

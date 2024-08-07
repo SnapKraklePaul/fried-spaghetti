@@ -1,0 +1,166 @@
+<!-- 
+<h1>Order Management</h1>
+
+<form action="/admin/orders" method="GET" class="mb-4">
+  <div class="input-group">
+    <input type="text" name="search" class="form-control" placeholder="Search orders..." value="<%= searchQuery %>">
+    <button type="submit" class="btn btn-primary">Search</button>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>User</th>
+      <th>Product</th>
+      <th>Payment Status</th>
+      <th>Purchase Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.forEach(order => { %>
+      <tr>
+        <td><%= order.orderID %></td>
+        <td>
+          <% if (order.user) { %>
+            <%= order.user.firstName %> <%= order.user.lastName %>
+          <% } else { %>
+            User Deleted
+          <% } %>
+        </td>
+        <td><%= order.product ? order.product.title : 'Product Unavailable' %></td>
+        <td><%= order.paymentStatus %></td>
+        <td><%= order.purchaseDate ? order.purchaseDate.toLocaleDateString() : 'Date Unavailable' %></td>
+        <td>
+          <a href="/admin/orders/<%= order._id %>" class="btn btn-sm btn-info">View</a>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <% for(let i = 1; i <= totalPages; i++) { %>
+      <li class="page-item <%= currentPage == i ? 'active' : '' %>">
+        <a class="page-link" href="/admin/orders?page=<%= i %>&search=<%= searchQuery %>"><%= i %></a>
+      </li>
+    <% } %>
+  </ul>
+</nav>
+ -->
+
+
+ <div class="admin-container">
+  <aside class="admin-sidebar">
+      <h1>Admin Dashboard</h1>
+      <nav>
+          <ul>
+              <li><a href="/admin"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+              <li><a href="/admin/users"><i class="fas fa-users"></i> User Management</a></li>
+              <li><a href="/admin/products"><i class="fas fa-box"></i> Product Management</a></li>
+              <li><a href="/admin/quizzes"><i class="fas fa-question-circle"></i> Quiz Management</a></li>
+              <li><a href="/admin/orders" class="active"><i class="fas fa-shopping-cart"></i> Order Management</a></li>
+          </ul>
+      </nav>
+  </aside>
+
+  <main class="admin-main">
+      <div class="admin-header">
+          <h1>Order Management</h1>
+      </div>
+
+      <div class="admin-content">
+          <div class="search-bar">
+              <form action="/admin/orders" method="GET">
+                  <input type="text" name="search" value="<%= searchQuery %>" placeholder="Search orders...">
+                  <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
+              </form>
+          </div>
+
+          <div class="table-responsive">
+              <table class="admin-table">
+                  <thead>
+                      <tr>
+                          <th>Order ID</th>
+                          <th>User</th>
+                          <th>Product</th>
+                          <th>Payment Status</th>
+                          <th>Purchase Date</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <% orders.forEach(order => { %>
+                          <tr>
+                              <td><%= order.orderID %></td>
+                              <td>
+                                <% if (order.user) { %>
+                                  <%= order.user.firstName %> <%= order.user.lastName %>
+                                <% } else { %>
+                                  User Deleted
+                                <% } %>
+                              </td>
+                              <td><%= order.product ? order.product.title : 'Product Unavailable' %></td>
+                              <td><%= order.paymentStatus %></td>
+                              <td><%= order.purchaseDate ? order.purchaseDate.toLocaleDateString() : 'Date Unavailable' %></td>
+                              <td class="action-buttons">
+                                  <button class="btn btn-sm btn-info view-order" data-order-id="<%= order._id %>"><i class="fas fa-eye"></i> View</button>
+                              </td>
+                          </tr>
+                          <tr class="expandable-row" id="expandable-<%= order._id %>">
+                              <td colspan="6">
+                                  <div class="expandable-content">
+                                      <div class="order-details" style="display: none;"></div>
+                                  </div>
+                              </td>
+                          </tr>
+                      <% }) %>
+                  </tbody>
+              </table>
+          </div>
+
+          <div class="pagination">
+              <% if (currentPage > 1) { %>
+                  <a href="/admin/orders?page=<%= currentPage - 1 %>&search=<%= searchQuery %>" class="btn btn-sm btn-secondary"><i class="fas fa-chevron-left"></i> Previous</a>
+              <% } %>
+              
+              <% const maxPages = 5; %>
+              <% const startPage = Math.max(1, currentPage - Math.floor(maxPages / 2)); %>
+              <% const endPage = Math.min(totalPages, startPage + maxPages - 1); %>
+              
+              <% if (startPage > 1) { %>
+                  <a href="/admin/orders?page=1&search=<%= searchQuery %>" class="btn btn-sm btn-secondary">1</a>
+                  <% if (startPage > 2) { %>
+                      <span class="pagination-ellipsis">...</span>
+                  <% } %>
+              <% } %>
+              
+              <% for (let i = startPage; i <= endPage; i++) { %>
+                  <% if (i === currentPage) { %>
+                      <span class="btn btn-sm btn-primary"><%= i %></span>
+                  <% } else { %>
+                      <a href="/admin/orders?page=<%= i %>&search=<%= searchQuery %>" class="btn btn-sm btn-secondary"><%= i %></a>
+                  <% } %>
+              <% } %>
+              
+              <% if (endPage < totalPages) { %>
+                  <% if (endPage < totalPages - 1) { %>
+                      <span class="pagination-ellipsis">...</span>
+                  <% } %>
+                  <a href="/admin/orders?page=<%= totalPages %>&search=<%= searchQuery %>" class="btn btn-sm btn-secondary"><%= totalPages %></a>
+              <% } %>
+              
+              <% if (currentPage < totalPages) { %>
+                  <a href="/admin/orders?page=<%= currentPage + 1 %>&search=<%= searchQuery %>" class="btn btn-sm btn-secondary">Next <i class="fas fa-chevron-right"></i></a>
+              <% } %>
+          </div>
+
+          <p class="total-count">Total Orders: <%= totalOrders %></p>
+      </div>
+  </main>
+</div>
+
+<script src="/js/admin-orders.js"></script>

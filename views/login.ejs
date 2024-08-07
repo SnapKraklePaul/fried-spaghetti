@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="/css/auth.css">
+
+
+<div class="auth-container">
+  <div class="auth-form">
+      <h2>Login</h2>
+      <form action="/login" method="POST" class="needs-validation" novalidate>
+          <div class="form-group">
+              <input type="email" name="email" id="email" placeholder="Email" required aria-describedby="email-error">
+              <div id="email-error" class="invalid-feedback">Please enter a valid email address.</div>
+          </div>
+          <div class="form-group">
+              <input type="password" name="password" id="password" placeholder="Password" required aria-describedby="password-error">
+              <div id="password-error" class="invalid-feedback">Please enter your password.</div>
+          </div>
+          <button type="submit">Login</button>
+      </form>
+      <p class="switch-text">Don't have an account? <a href="/register">Register Here!</a></p>
+  </div>
+</div>
+
+<script src="/js/form-validation.js"></script>

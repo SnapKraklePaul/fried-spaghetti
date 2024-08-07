@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="/css/navbar.css">
+<nav id="main-nav">
+  <div class="nav-content">
+    <div class="nav-logo">
+      <a href="/"><img src="/images/batman.png" alt="Logo"></a>
+    </div>
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <div class="nav-center">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/courses" class="nav-link">Courses</a>
+        <a href="/resources" class="nav-link">Resources</a>
+        <a href="/faq" class="nav-link">F.A.Q.s</a>
+      </div>
+      <div class="nav-right">
+        <% if (!locals.user) { %>
+          <a href="/login" class="nav-link">Login</a>
+          <a href="/register" class="nav-link">Register</a>
+        <% } else { %>
+          <a href="/profile" class="nav-link">Profile</a>
+          <% if (locals.user.isAdmin) { %>
+            <a href="/admin" class="nav-link">Admin</a>
+          <% } %>
+          <!-- <a href="#" id="logout-link" class="nav-link">Logout</a> -->
+          <a href="#" id="logout-link" class="nav-link logout-link">Logout</a>
+        <% } %>
+        <a href="/cart" class="cart-icon">
+          <i class="fas fa-shopping-cart"></i>
+          <% if (cartItemCount > 0) { %>
+            <span class="cart-count"><%= cartItemCount %></span>
+          <% } %>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- <% if (locals.user) { %>
+<script>
+  document.getElementById('logout-link').addEventListener('click', function(e) {
+    e.preventDefault();
+    fetch('/logout', { method: 'POST', credentials: 'same-origin' })
+      .then(() => {
+        window.location.href = '/';
+      })
+      .catch(error => console.error('Error:', error));
+  });
+</script>
+<% } %> -->
+
+<% if (locals.user) { %>
+  <script>
+    document.addEventListener('click', function(e) {
+      if (e.target && e.target.classList.contains('logout-link')) {
+        e.preventDefault();
+        fetch('/logout', { method: 'POST', credentials: 'same-origin' })
+          .then(() => {
+            window.location.href = '/';
+          })
+          .catch(error => console.error('Error:', error));
+      }
+    });
+  </script>
+  <% } %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
+    
+    mobileMenuToggle.addEventListener('click', function() {
+      navLinks.classList.toggle('active');
+      body.classList.toggle('menu-open');
+      mobileMenuToggle.classList.toggle('active');
+      console.log('Menu toggled'); // For debugging
+    });
+  });
+</script>

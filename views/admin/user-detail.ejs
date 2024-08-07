@@ -1,0 +1,10 @@
+<h1>User Details</h1>
+<div>
+  <p><strong>Name:</strong> <%= user.firstName %> <%= user.lastName %></p>
+  <p><strong>Email:</strong> <%= user.email %></p>
+  <p><strong>Admin:</strong> <%= user.isAdmin ? 'Yes' : 'No' %></p>
+  <p><strong>Has Paid:</strong> <%= user.hasPaid ? 'Yes' : 'No' %></p>
+  <p><strong>Order ID:</strong> <%= user.orderID || 'N/A' %></p>
+  <p><strong>Quiz Score:</strong> <%= user.quizScore %></p>
+  <a href="/admin/users/<%= user._id %>/edit">Edit User</a>
+</div>

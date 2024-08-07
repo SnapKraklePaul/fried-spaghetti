@@ -1,0 +1,165 @@
+<!-- <h1>PayPal Checkout</h1>
+
+<h2>Order Summary</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% cartItems.forEach(item => { %>
+      <tr>
+        <td><%= item.title %></td>
+        <td>$<%= item.price.toFixed(2) %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td><strong>$<%= total.toFixed(2) %></strong></td>
+    </tr>
+  </tfoot>
+</table>
+
+<div id="paypal-button-container"></div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=<%= process.env.PAYPAL_CLIENT_ID %>"></script>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return fetch('/create-paypal-transaction', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function(res) {
+        return res.json();
+      }).then(function(orderData) {
+        return orderData.id;
+      });
+    },
+    onApprove: function(data, actions) {
+      return fetch('/capture-paypal-transaction', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          orderId: data.orderID
+        })
+      }).then(function(res) {
+        return res.json();
+      }).then(function(responseData) {
+        if (responseData.success) {
+          window.location.href = responseData.redirectUrl;
+        } else {
+          alert('An error occurred during payment capture');
+        }
+      }).catch(function(error) {
+        console.error('Error:', error);
+        alert('An error occurred during payment capture');
+      });
+    }
+  }).render('#paypal-button-container');
+</script> -->
+
+
+<link rel="stylesheet" href="/css/checkout.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<div class="checkout-container">
+  <h1>PayPal Checkout</h1>
+
+  <div class="order-summary">
+    <h2>Order Summary</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% cartItems.forEach(item => { %>
+          <tr>
+            <td><%= item.title %></td>
+            <td>$<%= item.price.toFixed(2) %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td><strong>$<%= total.toFixed(2) %></strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="paypal-container">
+    <h2>Complete Your Purchase</h2>
+    <p>Click the PayPal button below to securely complete your purchase.</p>
+    <div id="paypal-button-container" class="paypal-button-container"></div>
+  </div>
+
+  <div class="secure-payment">
+    <i class="fas fa-lock"></i> Your payment is secure and encrypted.
+  </div>
+
+  <div class="payment-notes">
+    <h3>Important Notes:</h3>
+    <ul>
+      <li>You will gain immediate access to your course(s) after successful payment.</li>
+      <li>If you encounter any issues, please contact our support team.</li>
+      <li>Refunds are available within 30 days of purchase if you're not satisfied.</li>
+    </ul>
+  </div>
+
+  <div class="cart-actions">
+    <a href="/checkout" class="btn btn-secondary">Back to Checkout</a>
+  </div>
+</div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=<%= process.env.PAYPAL_CLIENT_ID %>"></script>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return fetch('/create-paypal-transaction', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function(res) {
+        return res.json();
+      }).then(function(orderData) {
+        return orderData.id;
+      });
+    },
+    onApprove: function(data, actions) {
+      return fetch('/capture-paypal-transaction', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          orderId: data.orderID
+        })
+      }).then(function(res) {
+        return res.json();
+      }).then(function(responseData) {
+        if (responseData.success) {
+          window.location.href = responseData.redirectUrl;
+        } else {
+          alert('An error occurred during payment capture');
+        }
+      }).catch(function(error) {
+        console.error('Error:', error);
+        alert('An error occurred during payment capture');
+      });
+    }
+  }).render('#paypal-button-container');
+</script>

@@ -1,0 +1,62 @@
+<!-- <h1>Payment Confirmation</h1>
+<p>Thank you for your purchase. Your order has been confirmed.</p>
+<h2>Order Details:</h2>
+<p>Order ID: <%= order.orderID %></p>
+<h3>Purchased Items:</h3>
+<ul>
+<% if (Array.isArray(order.product)) { %>
+    <% order.product.forEach(function(product) { %>
+        <li><%= product.title %> - $<%= product.price.toFixed(2) %></li>
+    <% }); %>
+<% } else { %>
+    <li><%= order.product.title %> - $<%= order.product.price.toFixed(2) %></li>
+<% } %>
+</ul>
+<p>Total Amount: $<%= 
+    Array.isArray(order.product) 
+        ? order.product.reduce((sum, product) => sum + product.price, 0).toFixed(2)
+        : order.product.price.toFixed(2)
+%></p>
+<p>You can now access your purchased course(s) in your user profile.</p>
+<a href="/profile">Go to Profile</a> -->
+
+<link rel="stylesheet" href="/css/checkout.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<div class="checkout-container">
+  <div class="confirmation-message">
+    <i class="fas fa-check-circle"></i>
+    <h1>Payment Confirmed</h1>
+    <p>Thank you for your purchase. Your order has been confirmed.</p>
+  </div>
+
+  <div class="order-details">
+    <h2>Order Details</h2>
+    <p><strong>Order ID:</strong> <%= order.orderID %></p>
+    
+    <h3>Purchased Items:</h3>
+    <ul class="purchased-items">
+      <% if (Array.isArray(order.product)) { %>
+        <% order.product.forEach(function(product) { %>
+          <li><%= product.title %> - $<%= product.price.toFixed(2) %></li>
+        <% }); %>
+      <% } else { %>
+        <li><%= order.product.title %> - $<%= order.product.price.toFixed(2) %></li>
+      <% } %>
+    </ul>
+    
+    <p class="total-amount">
+      <strong>Total Amount:</strong> $<%= 
+        Array.isArray(order.product)
+          ? order.product.reduce((sum, product) => sum + product.price, 0).toFixed(2)
+          : order.product.price.toFixed(2) 
+      %>
+    </p>
+  </div>
+
+  <div class="next-steps">
+    <h2>Next Steps</h2>
+    <p>You can now access your purchased course(s) in your user profile.</p>
+    <a href="/profile" class="btn btn-primary">Go to Profile</a>
+  </div>
+</div>

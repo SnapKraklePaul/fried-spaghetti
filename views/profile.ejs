@@ -1,0 +1,221 @@
+<!-- <div class="container">
+  <h1>Profile</h1>
+  
+  <div id="profile-info">
+    <p>
+      <strong>First Name:</strong> <span id="displayFirstName"><%= user.firstName %></span>
+      <i class="fas fa-edit edit-icon" data-field="firstName"></i>
+    </p>
+    <p>
+      <strong>Last Name:</strong> <span id="displayLastName"><%= user.lastName %></span>
+      <i class="fas fa-edit edit-icon" data-field="lastName"></i>
+    </p>
+    <p>
+      <strong>Email:</strong> <span id="displayEmail"><%= user.email %></span>
+      <i class="fas fa-edit edit-icon" data-field="email"></i>
+    </p>
+    <p>
+      <strong>Password:</strong> ********
+      <i class="fas fa-edit edit-icon" data-field="password"></i>
+    </p>
+  </div>
+
+  <form id="edit-profile-form" action="/profile" method="POST" class="needs-validation" style="display: none;" novalidate>
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" value="<%= user.firstName %>" required>
+      <div class="invalid-feedback">Please enter your first name.</div>
+    </div>
+    
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" value="<%= user.lastName %>" required>
+      <div class="invalid-feedback">Please enter your last name.</div>
+    </div>
+    
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" value="<%= user.email %>" required>
+      <div class="invalid-feedback">Please enter a valid email address.</div>
+    </div>
+    
+    <div id="password-fields" style="display: none;">
+      <div class="form-group">
+        <label for="currentPassword">Current Password:</label>
+        <input type="password" id="currentPassword" name="currentPassword">
+        <div class="invalid-feedback">Please enter your current password to make changes.</div>
+      </div>
+      
+      <div class="form-group">
+        <label for="newPassword">New Password:</label>
+        <input type="password" id="newPassword" name="newPassword"
+               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
+               title="Must contain at least one number, one uppercase and lowercase letter, one special character, and at least 8 or more characters">
+        <div class="invalid-feedback">
+          New password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="confirmPassword">Confirm New Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword">
+        <div class="invalid-feedback">Passwords don't match.</div>
+      </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Update Profile</button>
+    <button type="button" class="btn btn-secondary" id="cancel-edit">Cancel</button>
+  </form>
+
+  <h2>Your Courses</h2>
+  <% if (user.purchasedCourses && user.purchasedCourses.length > 0) { %>
+    <ul>
+      <% user.purchasedCourses.forEach(function(course) { %>
+        <li>
+          <a href="/course/<%= course._id %>"><%= course.title %></a>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>You haven't purchased any courses yet.</p>
+  <% } %>
+
+  <h2>Completed Courses and Certificates</h2>
+  <% if (user.completedCourses && user.completedCourses.length > 0) { %>
+    <ul>
+      <% user.completedCourses.forEach(function(course) { %>
+        <li>
+          <%= course.title %> - 
+          <a href="/certificate/<%= course._id %>" target="_blank">View Certificate</a> | 
+          <a href="/download-certificate/<%= course._id %>">Download Certificate</a>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>You haven't completed any courses yet.</p>
+  <% } %>
+
+  <form action="/logout" method="POST">
+    <button type="submit" class="btn btn-danger logout-btn">Logout</button>
+  </form>
+</div>
+
+<script src="/js/form-validation.js"></script>
+<script src="/js/profile-edit.js"></script> -->
+
+
+
+    <div class="profile-container">
+        <div class="profile-sidebar">
+            <!-- <div class="profile-picture">
+                <img src="/images/default-avatar.png" alt="Profile Picture">
+            </div> -->
+            <h2><%= user.firstName %> <%= user.lastName %></h2>
+            <p><%= user.email %></p>
+            <form action="/logout" method="POST">
+                <button type="submit" class="btn btn-danger logout-btn">Logout</button>
+            </form>
+        </div>
+
+        <div class="profile-main">
+            <section class="profile-section">
+                <h2>Personal Information</h2>
+                <div id="profile-info">
+                    <p>
+                        <strong>First Name:</strong> <span id="displayFirstName"><%= user.firstName %></span>
+                        <i class="fas fa-edit edit-icon" data-field="firstName"></i>
+                    </p>
+                    <p>
+                        <strong>Last Name:</strong> <span id="displayLastName"><%= user.lastName %></span>
+                        <i class="fas fa-edit edit-icon" data-field="lastName"></i>
+                    </p>
+                    <p>
+                        <strong>Email:</strong> <span id="displayEmail"><%= user.email %></span>
+                        <i class="fas fa-edit edit-icon" data-field="email"></i>
+                    </p>
+                    <p>
+                        <strong>Password:</strong> ********
+                        <i class="fas fa-edit edit-icon" data-field="password"></i>
+                    </p>
+                </div>
+
+                <form id="edit-profile-form" action="/profile" method="POST" class="needs-validation auth-form" style="display: none;" novalidate>
+                    <div class="form-group">
+                        <input type="text" id="firstName" name="firstName" value="<%= user.firstName %>" placeholder="First Name" required>
+                        <div class="invalid-feedback">Please enter your first name.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" id="lastName" name="lastName" value="<%= user.lastName %>" placeholder="Last Name" required>
+                        <div class="invalid-feedback">Please enter your last name.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" value="<%= user.email %>" placeholder="Email" required>
+                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                    </div>
+                    
+                    <div id="password-fields" style="display: none;">
+                        <div class="form-group">
+                            <input type="password" id="currentPassword" name="currentPassword" placeholder="Current Password">
+                            <div class="invalid-feedback">Please enter your current password to make changes.</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="password" id="newPassword" name="newPassword" placeholder="New Password"
+                                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
+                                   title="Must contain at least one number, one uppercase and lowercase letter, one special character, and at least 8 or more characters">
+                            <div class="invalid-feedback">
+                                New password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm New Password">
+                            <div class="invalid-feedback">Passwords don't match.</div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-edit">Cancel</button>
+                </form>
+            </section>
+
+            <section class="profile-section">
+                <h2>Your Courses</h2>
+                <% if (user.purchasedCourses && user.purchasedCourses.length > 0) { %>
+                    <ul class="course-list">
+                        <% user.purchasedCourses.forEach(function(course) { %>
+                            <li>
+                                <a href="/course/<%= course._id %>"><%= course.title %></a>
+                            </li>
+                        <% }); %>
+                    </ul>
+                <% } else { %>
+                    <p>You haven't purchased any courses yet.</p>
+                <% } %>
+            </section>
+
+            <section class="profile-section">
+                <h2>Completed Courses and Certificates</h2>
+                <% if (user.completedCourses && user.completedCourses.length > 0) { %>
+                    <ul class="course-list">
+                        <% user.completedCourses.forEach(function(course) { %>
+                            <li>
+                                <%= course.title %>
+                                <div class="certificate-links">
+                                    <a href="/certificate/<%= course._id %>" target="_blank" class="btn btn-sm btn-primary">View Certificate</a>
+                                    <a href="/download-certificate/<%= course._id %>" class="btn btn-sm btn-secondary">Download Certificate</a>
+                                </div>
+                            </li>
+                        <% }); %>
+                    </ul>
+                <% } else { %>
+                    <p>You haven't completed any courses yet.</p>
+                <% } %>
+            </section>
+        </div>
+    </div>
+
+    <script src="/js/form-validation.js"></script>
+    <script src="/js/profile-edit.js"></script>

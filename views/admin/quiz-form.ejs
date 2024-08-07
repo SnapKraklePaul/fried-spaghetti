@@ -1,0 +1,82 @@
+<h1><%= quiz._id ? 'Edit' : 'Create' %> Quiz</h1>
+<form action="/admin/quizzes<%= quiz._id ? '/' + quiz._id : '' %>" method="POST">
+  <div>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="<%= quiz.title || '' %>" required>
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description"><%= quiz.description || '' %></textarea>
+  </div>
+  <div>
+    <label for="product">Product:</label>
+    <select id="product" name="product">
+      <option value="">Select a product</option>
+      <% products.forEach(product => { %>
+        <option value="<%= product._id %>" <%= (quiz.product && quiz.product.toString() === product._id.toString()) ? 'selected' : '' %>><%= product.title %></option>
+      <% }) %>
+    </select>
+  </div>
+  <div id="questions">
+    <!-- Questions will be added dynamically using JavaScript -->
+  </div>
+  <button type="button" onclick="addQuestion()">Add Question</button>
+  <input type="hidden" id="questionsJson" name="questions" value="<%= JSON.stringify(quiz.questions || []) %>">
+  <button type="submit">Save</button>
+</form>
+
+<script>
+  let questions = JSON.parse(document.getElementById('questionsJson').value);
+
+  function renderQuestions() {
+    const questionsContainer = document.getElementById('questions');
+    questionsContainer.innerHTML = '';
+    questions.forEach((question, index) => {
+      const questionHtml = `
+        <div class="question">
+          <h3>Question ${index + 1}</h3>
+          <input type="text" value="${question.questionText}" onchange="updateQuestion(${index}, 'questionText', this.value)" placeholder="Question text" required>
+          <div class="options">
+            ${question.options.map((option, optionIndex) => `
+              <input type="text" value="${option}" onchange="updateOption(${index}, ${optionIndex}, this.value)" placeholder="Option ${optionIndex + 1}" required>
+            `).join('')}
+          </div>
+          <select onchange="updateQuestion(${index}, 'correctAnswer', this.value)">
+            ${question.options.map((_, optionIndex) => `
+              <option value="${optionIndex}" ${question.correctAnswer === optionIndex ? 'selected' : ''}>Option ${optionIndex + 1}</option>
+            `).join('')}
+          </select>
+          <button type="button" onclick="removeQuestion(${index})">Remove Question</button>
+        </div>
+      `;
+      questionsContainer.innerHTML += questionHtml;
+    });
+    document.getElementById('questionsJson').value = JSON.stringify(questions);
+  }
+
+  function addQuestion() {
+    questions.push({
+      questionText: '',
+      options: ['', '', '', ''],
+      correctAnswer: 0
+    });
+    renderQuestions();
+  }
+
+  function updateQuestion(index, field, value) {
+    questions[index][field] = field === 'correctAnswer' ? parseInt(value) : value;
+    document.getElementById('questionsJson').value = JSON.stringify(questions);
+  }
+
+  function updateOption(questionIndex, optionIndex, value) {
+    questions[questionIndex].options[optionIndex] = value;
+    document.getElementById('questionsJson').value = JSON.stringify(questions);
+  }
+
+  function removeQuestion(index) {
+    questions.splice(index, 1);
+    renderQuestions();
+  }
+
+  renderQuestions();
+</script>

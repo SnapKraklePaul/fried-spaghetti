@@ -1,0 +1,25 @@
+<aside class="courses-sidebar">
+    <h2>Our Courses</h2>
+    <nav>
+      <ul class="desktop-menu">
+        <li><a href="/courses" class="<%= typeof activeCourse === 'undefined' ? 'active' : '' %>">All Courses</a></li>
+        <% courses.forEach(course => { %>
+          <li>
+            <a href="/courses/<%= course._id %>" class="<%= (activeCourse && activeCourse._id.toString() === course._id.toString()) ? 'active' : '' %>">
+              <%= course.title %>
+            </a>
+          </li>
+        <% }) %>
+      </ul>
+      <div class="mobile-menu">
+        <select>
+          <option value="/courses">All Courses</option>
+          <% courses.forEach(course => { %>
+            <option value="/courses/<%= course._id %>" <%= (activeCourse && activeCourse._id.toString() === course._id.toString()) ? 'selected' : '' %>>
+              <%= course.title %>
+            </option>
+          <% }) %>
+        </select>
+      </div>
+    </nav>
+  </aside>

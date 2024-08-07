@@ -1,0 +1,163 @@
+
+<link rel="stylesheet" href="/css/home.css">
+
+
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h2>Your Compelling Headline Here</h2>
+      <p>Your engaging subtext goes here. Make it brief but impactful to encourage your visitors to take action.</p>
+      <a href="/courses" class="cta-button">Enroll Now</a>
+    </div>
+    <div class="hero-image">
+      <div class="photo-pile">
+        <img src="/images/concealed.jpg" alt="Hero Image 1" class="photo">
+        <img src="/images/training.jpg" alt="Hero Image 2" class="photo">
+        <img src="/images/training2.jpg" alt="Hero Image 3" class="photo">
+        <img src="/images/training3.jpg" alt="Hero Image 4" class="photo">
+        <img src="/images/concealed.jpg" alt="Hero Image 1" class="photo">
+        <img src="/images/training.jpg" alt="Hero Image 2" class="photo">
+        <img src="/images/training2.jpg" alt="Hero Image 3" class="photo">
+        <img src="/images/training3.jpg" alt="Hero Image 4" class="photo">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="features">
+    <h2>Why Choose Our Platform</h2>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <img src="/images/bulb-logo.png" alt="Feature 1 Icon" class="feature-icon">
+        <h3>Easy to Use</h3>
+        <p>Our intuitive interface makes learning a breeze, even for beginners.</p>
+      </div>
+      <div class="feature-item">
+        <img src="/images/bulb-logo.png" alt="Feature 2 Icon" class="feature-icon">
+        <h3>Expert Instructors</h3>
+        <p>Learn from industry professionals with years of real-world experience.</p>
+      </div>
+      <div class="feature-item">
+        <img src="/images/bulb-logo.png" alt="Feature 3 Icon" class="feature-icon">
+        <h3>Flexible Learning</h3>
+        <p>Access courses anytime, anywhere, fitting education into your busy schedule.</p>
+      </div>
+      <div class="feature-item">
+        <img src="/images/bulb-logo.png" alt="Feature 4 Icon" class="feature-icon">
+        <h3>Interactive Projects</h3>
+        <p>Apply your knowledge with hands-on projects and real-world scenarios.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Sign Up</h3>
+        <p>Create your account in just a few clicks.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Choose Your Course</h3>
+        <p>Browse our wide selection of courses and pick the one that suits you.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Start Learning</h3>
+        <p>Access course materials and begin your learning journey.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <h3>How long do I have access to the course?</h3>
+        <p>You have lifetime access to all purchased courses.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Are there any prerequisites for the courses?</h3>
+        <p>Most courses are designed for beginners, but some advanced courses may have prerequisites. Check the course description for details.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I get a refund if I'm not satisfied?</h3>
+        <p>Yes, we offer a 30-day money-back guarantee if you're not completely satisfied with your purchase.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do you offer certificates upon completion?</h3>
+        <p>Yes, you'll receive a certificate of completion for each course you finish.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="contact">
+    <h2>Get in Touch</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <p>Email: info@example.com</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Address: 123 Learning St, Education City, 12345</p>
+      </div>
+      <form class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+
+  
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+  const pile = document.querySelector('.photo-pile');
+  const photos = pile.querySelectorAll('.photo');
+  let currentIndex = 0;
+
+  function rotatePhotos() {
+    photos.forEach(photo => photo.classList.remove('active'));
+
+    for (let i = 0; i < 3; i++) {
+      let index = (currentIndex + i) % photos.length;
+      photos[index].classList.add('active');
+      
+      let rotation, scale, translateX, translateY;
+      
+      switch(i) {
+        case 0: // top photo
+          rotation = -2 + Math.random() * 4; // -2 to 2 degrees
+          scale = 0.95;
+          translateX = translateY = -50;
+          break;
+        case 1: // middle photo
+          rotation = 3 + Math.random() * 4; // 3 to 7 degrees
+          scale = 0.9;
+          translateX = translateY = -51;
+          break;
+        case 2: // bottom photo
+          rotation = -5 + Math.random() * 4; // -5 to -1 degrees
+          scale = 0.85;
+          translateX = translateY = -52;
+          break;
+      }
+      
+      photos[index].style.transform = `translate(${translateX}%, ${translateY}%) rotate(${rotation}deg) scale(${scale})`;
+    }
+
+    currentIndex = (currentIndex + 1) % photos.length;
+  }
+
+  rotatePhotos();
+  setInterval(rotatePhotos, 3000);
+});
+      </script>

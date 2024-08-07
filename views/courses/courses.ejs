@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/css/courses.css">
+
+<div class="courses-dashboard">
+  <%- include('partials/courses-sidebar', { courses, activeCourse: activeCourse || null }) %>
+  
+  <main class="courses-main">
+    <% if (activeContent === 'overview') { %>
+      <%- include('partials/course-overview', { courses, userPurchasedCourses }) %>
+    <% } else if (activeContent === 'detail' && activeCourse) { %>
+      <%- include('partials/course-detail', { course: activeCourse, isPurchased }) %>
+    <% } %>
+  </main>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenu = document.querySelector('.mobile-menu select');
+    if (mobileMenu) {
+      mobileMenu.addEventListener('change', function() {
+        if (this.value) {
+          window.location.href = this.value;
+        }
+      });
+    }
+  });
+</script>

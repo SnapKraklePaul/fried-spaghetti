@@ -1,0 +1,34 @@
+
+
+<h1>Order Details</h1>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title">Order ID: <%= order.orderID %></h5>
+    <p class="card-text"><strong>User:</strong> <%= order.user.firstName %> <%= order.user.lastName %> (<%= order.user.email %>)</p>
+    <p class="card-text"><strong>Product:</strong> <%= order.product.title %></p>
+    <p class="card-text"><strong>Price:</strong> $<%= order.product.price.toFixed(2) %></p>
+    <p class="card-text"><strong>Payment Status:</strong> <%= order.paymentStatus %></p>
+    <p class="card-text"><strong>Purchase Date:</strong> <%= order.purchaseDate.toLocaleDateString() %></p>
+    <% if (order.quizScore !== null) { %>
+      <p class="card-text"><strong>Quiz Score:</strong> <%= order.quizScore %></p>
+    <% } %>
+    <p class="card-text"><strong>Certificate Issued:</strong> <%= order.certificateIssued ? 'Yes' : 'No' %></p>
+  </div>
+</div>
+
+<h2>Update Payment Status</h2>
+<form action="/admin/orders/<%= order._id %>/update-status" method="POST" class="mb-4">
+  <div class="form-group">
+    <label for="paymentStatus">Payment Status:</label>
+    <select name="paymentStatus" id="paymentStatus" class="form-control">
+      <option value="pending" <%= order.paymentStatus === 'pending' ? 'selected' : '' %>>Pending</option>
+      <option value="completed" <%= order.paymentStatus === 'completed' ? 'selected' : '' %>>Completed</option>
+      <option value="failed" <%= order.paymentStatus === 'failed' ? 'selected' : '' %>>Failed</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Update Status</button>
+</form>
+
+<a href="/admin/orders" class="btn btn-secondary">Back to Orders</a>
+

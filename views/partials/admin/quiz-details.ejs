@@ -1,0 +1,23 @@
+<div class="quiz-details-content">
+    <h2>Quiz Details</h2>
+    <p><strong>Title:</strong> <%= quiz.title %></p>
+    <p><strong>Description:</strong> <%= quiz.description %></p>
+    <p><strong>Product:</strong> <%= quiz.product ? quiz.product.title : 'N/A' %></p>
+    <p><strong>Number of Questions:</strong> <%= quiz.questions.length %></p>
+    
+    <h3>Questions:</h3>
+    <ol>
+        <% quiz.questions.forEach((question, index) => { %>
+            <li>
+                <p><strong>Question:</strong> <%= question.text %></p>
+                <p><strong>Correct Answer:</strong> <%= question.correctAnswer  + 1%></p>
+                <p><strong>Options:</strong></p>
+                <ul>
+                    <% question.options.forEach(option => { %>
+                        <li><%= option %></li>
+                    <% }) %>
+                </ul>
+            </li>
+        <% }) %>
+    </ol>
+</div>

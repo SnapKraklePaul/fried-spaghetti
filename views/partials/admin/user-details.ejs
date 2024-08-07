@@ -1,0 +1,45 @@
+<div class="user-details-content">
+    <h2>User Details</h2>
+    <div class="user-info">
+        <p><strong>Name:</strong> <%= user.firstName %> <%= user.lastName %></p>
+        <p><strong>Email:</strong> <%= user.email %></p>
+        <p><strong>Admin Status:</strong> <%= user.isAdmin ? 'Yes' : 'No' %></p>
+    </div>
+
+    <div class="user-courses">
+        <h3>Purchased Courses</h3>
+        <% if (user.purchasedCourses && user.purchasedCourses.length > 0) { %>
+            <ul>
+                <% user.purchasedCourses.forEach(course => { %>
+                    <li><%= course.title %> (ID: <%= course._id %>)</li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>No purchased courses</p>
+        <% } %>
+
+        <h3>Completed Courses</h3>
+        <% if (user.completedCourses && user.completedCourses.length > 0) { %>
+            <ul>
+                <% user.completedCourses.forEach(course => { %>
+                    <li><%= course.title %> (ID: <%= course._id %>)</li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>No completed courses</p>
+        <% } %>
+    </div>
+
+    <div class="user-quiz-scores">
+        <h3>Quiz Scores</h3>
+        <% if (user.quizScores && user.quizScores.size > 0) { %>
+            <ul>
+                <% for (const [quizId, score] of user.quizScores) { %>
+                    <li>Quiz ID: <%= quizId %>, Score: <%= score %></li>
+                <% } %>
+            </ul>
+        <% } else { %>
+            <p>No quiz scores available</p>
+        <% } %>
+    </div>
+</div>

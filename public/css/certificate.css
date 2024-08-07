@@ -1,0 +1,148 @@
+:root {
+    --primary-red: #E63946;
+    --bg-black: #000000;
+    --primary-blue: #1D3557;
+    --light-blue: #457B9D;
+    --pure-white: #FFFFFF;
+    --light-grey: #dee0dd;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-black);
+    color: var(--pure-white);
+    line-height: 1.6;
+  }
+  
+  .certificate-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: center;
+    margin-top: 80px;
+  }
+  
+  .certificate {
+    background-color: var(--pure-white);
+    color: var(--primary-blue);
+    border: 20px solid var(--primary-red);
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+  
+  .certificate-header h1 {
+    color: var(--primary-red);
+    font-size: 36px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-red);
+    padding-bottom: 10px;
+  }
+  
+  .certificate-content {
+    margin: 40px 0;
+  }
+  
+  .presented, .completion {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .name {
+    font-size: 32px;
+    color: var(--primary-red);
+    margin: 20px 0;
+    text-transform: uppercase;
+  }
+  
+  .course-title {
+    font-size: 24px;
+    color: var(--primary-blue);
+    margin: 20px 0;
+    font-style: italic;
+  }
+  
+  .score, .date {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .certificate-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 40px;
+  }
+  
+  .signature {
+    text-align: center;
+  }
+  
+  .signature-line {
+    width: 200px;
+    height: 1px;
+    background-color: var(--primary-blue);
+    margin-bottom: 5px;
+  }
+  
+  .seal {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-red);
+    color: var(--pure-white);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #c62828;
+  }
+  
+  @media print {
+    body {
+      background-color: var(--pure-white);
+    }
+  
+    .certificate-container {
+      max-width: 100%;
+      margin: 0;
+    }
+  
+    .certificate {
+      border: none;
+      box-shadow: none;
+    }
+  
+    .btn {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .certificate {
+      padding: 20px;
+    }
+  
+    .certificate-header h1 {
+      font-size: 28px;
+    }
+  
+    .name {
+      font-size: 24px;
+    }
+  
+    .course-title {
+      font-size: 20px;
+    }
+  
+    .presented, .completion, .score, .date {
+      font-size: 16px;
+    }
+  }

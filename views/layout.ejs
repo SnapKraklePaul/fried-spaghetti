@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof pageTitle !== 'undefined' ? pageTitle : 'Company Name' %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    
+    <% if(success_msg != ''){ %>
+        <div class="alert alert-success"><%= success_msg %></div>
+    <% } %>
+
+    <% if(error_msg != ''){ %>
+        <div class="alert alert-danger"><%= error_msg %></div>
+    <% } %>
+
+    <% if(error != ''){ %>
+        <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <main>
+        <%- body %>
+    </main>
+
+    <%- include('partials/footer') %>
+        
+    <script src="/js/main.js"></script>
+
+    
+</body>
+</html>

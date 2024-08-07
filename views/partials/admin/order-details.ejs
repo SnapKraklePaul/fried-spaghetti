@@ -1,0 +1,22 @@
+<div class="order-details-content">
+    <h2>Order Details</h2>
+    <p><strong>Order ID:</strong> <%= order.orderID %></p>
+    <p><strong>Payment Status:</strong> <%= order.paymentStatus %></p>
+    <p><strong>Purchase Date:</strong> <%= order.purchaseDate ? order.purchaseDate.toLocaleString() : 'Date Unavailable' %></p>
+    
+    <h3>User Information</h3>
+    <% if (order.user) { %>
+        <p><strong>Name:</strong> <%= order.user.firstName %> <%= order.user.lastName %></p>
+        <p><strong>Email:</strong> <%= order.user.email %></p>
+    <% } else { %>
+        <p>User information not available</p>
+    <% } %>
+    
+    <h3>Product Information</h3>
+    <% if (order.product) { %>
+        <p><strong>Title:</strong> <%= order.product.title %></p>
+        <p><strong>Price:</strong> $<%= order.product.price.toFixed(2) %></p>
+    <% } else { %>
+        <p>Product information not available</p>
+    <% } %>
+</div>

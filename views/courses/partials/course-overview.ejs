@@ -1,0 +1,44 @@
+<div class="courses-header">
+    <h1>Course Overview</h1>
+  </div>
+  
+  <div class="courses-content">
+    <section class="featured-course">
+      <h2>Featured Course</h2>
+      <% if (courses.length > 0) { %>
+        <% const featuredCourse = courses[0] %>
+        <div class="course-card">
+          <div class="course-image">
+            <img src="<%= featuredCourse.imageUrl || '/images/batman.png' %>" alt="<%= featuredCourse.title %>">
+          </div>
+          <div class="course-info">
+            <h2><%= featuredCourse.title %></h2>
+            <p><%= featuredCourse.description.substring(0, 150) %>...</p>
+            <p class="price">$<%= featuredCourse.price.toFixed(2) %></p>
+            <div class="button-group">
+              <a href="/courses/<%= featuredCourse._id %>" class="btn btn-info">More Info</a>
+              <% if (user) { %>
+                <% if (userPurchasedCourses.includes(featuredCourse._id.toString())) { %>
+                  <p class="already-purchased">Already Purchased</p>
+                <% } else { %>
+                  <form action="/cart/add" method="POST">
+                    <input type="hidden" name="productId" value="<%= featuredCourse._id %>">
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                  </form>
+                <% } %>
+              <% } else { %>
+                <a href="/login" class="btn btn-secondary">Login to Purchase</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% } else { %>
+        <p>No courses available at the moment.</p>
+      <% } %>
+    </section>
+  
+    <section class="coming-soon">
+      <h2>Coming Soon</h2>
+      <p>Stay tuned for more exciting courses!</p>
+    </section>
+  </div>

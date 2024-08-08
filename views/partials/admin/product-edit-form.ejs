@@ -6,12 +6,24 @@
             <input type="text" id="title" name="title" value="<%= product.title %>" required>
         </div>
         <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" required><%= product.description %></textarea>
+            <label for="overview">Overview:</label>
+            <textarea id="overview" name="overview" required><%= product.overview %></textarea>
         </div>
         <div class="form-group">
             <label for="price">Price:</label>
             <input type="number" id="price" name="price" value="<%= product.price %>" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="detailedDescription">Detailed Description:</label>
+            <textarea id="detailedDescription" name="detailedDescription" required><%= product.detailedDescription %></textarea>
+        </div>
+        <div class="form-group">
+            <label for="topicsCovered">Topics Covered:</label>
+            <textarea id="topicsCovered" name="topicsCovered" required><%= product.topicsCovered %></textarea>
+        </div>
+        <div class="form-group">
+            <label for="classDetails">Class Details:</label>
+            <textarea id="classDetails" name="classDetails" required><%= product.classDetails %></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Update Product</button>
     </form>

@@ -1,4 +1,4 @@
-<div class="courses-header">
+<!-- <div class="courses-header">
     <h1>Course Overview</h1>
   </div>
   
@@ -13,7 +13,7 @@
           </div>
           <div class="course-info">
             <h2><%= featuredCourse.title %></h2>
-            <p><%= featuredCourse.description.substring(0, 150) %>...</p>
+            <p><%= featuredCourse.overview ? featuredCourse.overview.substring(0, 150) + '...' : 'No overview available' %></p>
             <p class="price">$<%= featuredCourse.price.toFixed(2) %></p>
             <div class="button-group">
               <a href="/courses/<%= featuredCourse._id %>" class="btn btn-info">More Info</a>
@@ -41,4 +41,43 @@
       <h2>Coming Soon</h2>
       <p>Stay tuned for more exciting courses!</p>
     </section>
+  </div> -->
+
+
+  <div class="courses-header">
+    <h1>Course Overview</h1>
+  </div>
+  
+  <div class="courses-content">
+    <% if (courses.length > 0) { %>
+      <% courses.forEach(course => { %>
+        <div class="course-card">
+          <!-- <div class="course-image">
+            <img src="<%= course.imageUrl || '/images/batman.png' %>" alt="<%= course.title %>">
+          </div> -->
+          <div class="course-info">
+            <h2><%= course.title %></h2>
+            <p><%= course.overview ? course.overview.substring(0, 150) + '...' : 'No overview available' %></p>
+            <p class="price">$<%= course.price.toFixed(2) %></p>
+            <div class="button-group">
+              <a href="/courses/<%= course._id %>" class="btn btn-info">More Info</a>
+              <% if (user) { %>
+                <% if (userPurchasedCourses.includes(course._id.toString())) { %>
+                  <p class="already-purchased">Already Purchased</p>
+                <% } else { %>
+                  <form action="/cart/add" method="POST">
+                    <input type="hidden" name="productId" value="<%= course._id %>">
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                  </form>
+                <% } %>
+              <% } else { %>
+                <a href="/login" class="btn btn-secondary">Login to Purchase</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p>No courses available at the moment.</p>
+    <% } %>
   </div>

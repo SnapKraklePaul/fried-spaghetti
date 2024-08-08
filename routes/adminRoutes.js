@@ -182,7 +182,8 @@ router.get('/admin/products', isAuthenticated, isAdmin, async (req, res) => {
     const query = searchQuery ? {
       $or: [
         { title: { $regex: searchQuery, $options: 'i' } },
-        { description: { $regex: searchQuery, $options: 'i' } }
+        { overview: { $regex: searchQuery, $options: 'i' } },
+        { detailedDescription: { $regex: searchQuery, $options: 'i' } }
       ]
     } : {};
 
@@ -193,9 +194,9 @@ router.get('/admin/products', isAuthenticated, isAdmin, async (req, res) => {
       .skip(skip)
       .limit(limit);
 
-    res.render('admin/products', { 
-      pageTitle: 'Product Management', 
-      products, 
+    res.render('admin/products', {
+      pageTitle: 'Product Management',
+      products,
       searchQuery,
       currentPage: page,
       totalPages,
@@ -216,8 +217,15 @@ router.get('/admin/products/create', isAuthenticated, isAdmin, (req, res) => {
 // Create product
 router.post('/admin/products', isAuthenticated, isAdmin, async (req, res) => {
   try {
-    const { title, description, price } = req.body;
-    const product = new Product({ title, description, price });
+    const { title, overview, price, detailedDescription, topicsCovered, classDetails } = req.body;
+    const product = new Product({ 
+      title, 
+      overview, 
+      price, 
+      detailedDescription, 
+      topicsCovered, 
+      classDetails 
+    });
     await product.save();
     req.flash('success_msg', 'Product created successfully');
     res.redirect('/admin/products');
@@ -259,8 +267,15 @@ router.get('/admin/products/:id/edit', isAuthenticated, isAdmin, async (req, res
 // Update product (AJAX)
 router.post('/admin/products/:id', isAuthenticated, isAdmin, async (req, res) => {
   try {
-    const { title, description, price } = req.body;
-    await Product.findByIdAndUpdate(req.params.id, { title, description, price });
+    const { title, overview, price, detailedDescription, topicsCovered, classDetails } = req.body;
+    await Product.findByIdAndUpdate(req.params.id, { 
+      title, 
+      overview, 
+      price, 
+      detailedDescription, 
+      topicsCovered, 
+      classDetails 
+    });
     res.json({ success: true, message: 'Product updated successfully' });
   } catch (error) {
     console.error('Update product error:', error);

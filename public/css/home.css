@@ -1,3 +1,4 @@
+/* General Styles */
 * {
   box-sizing: border-box;
 }
@@ -11,11 +12,17 @@
   --bg-red: #dc888f;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-black);
+  color: var(--pure-white);
+}
+
 /* Hero Section */
 .hero {
   padding: 160px 0 80px 0;
-  background-color: var(--bg-black);
-  color: var(--pure-white);
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
@@ -29,11 +36,6 @@
   padding: 0 20px;
 }
 
-/* .hero-text, .hero-image {
-  flex: 1;
-  padding: 0 20px;
-} */
-
 .hero-text {
   flex: 1;
   padding: 0 20px;
@@ -41,50 +43,14 @@
 
 .hero-text h2 {
   font-size: 2.5em;
-  color: var(--pure-white);
   margin-bottom: 20px;
 }
 
 .hero-text p {
   font-size: 1.1em;
-  color: var(--pure-white);
   margin-bottom: 30px;
   line-height: 1.6;
 }
-
-/* .hero-image {
-  flex: 1;
-  padding: 0 20px;
-  perspective: 1000px;
-}
-
-.carousel {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  transform-style: preserve-3d;
-}
-
-.carousel img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  opacity: 0;
-  transform: translateZ(-400px) rotateY(0deg) rotateX(0deg);
-  transition: opacity 0.5s, transform 0.5s;
-}
-
-.carousel img.active {
-  opacity: 1;
-  transform: translateZ(0) rotateY(0deg) rotateX(0deg);
-}
-
-@keyframes toss {
-  0% { transform: translateZ(-400px) rotateY(0deg) rotateX(0deg); }
-  100% { transform: translateZ(0) rotateY(var(--rotate-y)) rotateX(var(--rotate-x)); }
-} */
 
 .hero-image {
   flex: 1;
@@ -94,8 +60,10 @@
 
 .photo-pile {
   position: relative;
-  width: 600px; /* Increased from 300px */
-  height: 400px; /* Increased from 300px */
+  width: 100%;
+  max-width: 600px;
+  height: 0;
+  padding-bottom: 66.67%;
   margin: 0 auto;
 }
 
@@ -145,12 +113,6 @@
 
 .cta-button:hover {
   background-color: #D32F2F;
-}
-
-.hero-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
 }
 
 /* Features Section */
@@ -308,27 +270,16 @@
 
 .contact-info, .contact-form {
   flex-basis: calc(50% - 20px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.contact-form {
-  width: 100%;
 }
 
 .contact-form form {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .contact-form input,
 .contact-form textarea {
-  width: 80%;
+  width: 100%;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid var(--light-blue);
@@ -348,7 +299,7 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: center;
+  align-self: flex-start;
 }
 
 .contact-form button:hover {
@@ -368,24 +319,54 @@
   }
 }
 
-@media screen and (max-width: 768px) {
-  .hero-content, .contact-container {
+@media screen and (max-width: 1024px) {
+  .hero-content {
     flex-direction: column;
   }
 
-  .hero-text, .hero-image, .contact-info, .contact-form {
+  .hero-text, .hero-image {
     width: 100%;
     padding: 20px 0;
   }
 
+  .hero-image {
+    order: -1;
+    margin-bottom: 30px;
+  }
+
   .hero-text {
-    order: 1;
     text-align: center;
   }
 
-  .hero-image {
-    order: 0;
-    margin-bottom: 30px;
+  .photo-pile {
+    max-width: 750px;
+    padding-bottom: 100%;
+  }
+
+  .contact-container {
+    flex-direction: column;
+  }
+
+  .contact-info, .contact-form {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    padding: 120px 0 60px 0;
+  }
+
+  .hero-text h2 {
+    font-size: 2em;
+  }
+
+  .hero-text p {
+    font-size: 1em;
+  }
+
+  .photo-pile {
+    max-width: 500px;
   }
 
   .feature-grid {
@@ -412,9 +393,33 @@
   .step {
     width: 100%;
   }
+}
 
-  .contact-form input,
-  .contact-form textarea {
-    width: 100%;
+@media screen and (max-width: 480px) {
+  .hero {
+    padding: 100px 0 40px 0;
+  }
+
+  .hero-text h2 {
+    font-size: 1.8em;
+  }
+
+  .photo-pile {
+    max-width: 350px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .hero-text h2 {
+    font-size: 1.6em;
+  }
+
+  .photo-pile {
+    max-width: 250px;
+  }
+
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 0.9em;
   }
 }

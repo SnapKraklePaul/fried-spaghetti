@@ -1,16 +1,32 @@
-<h1><%= product._id ? 'Edit' : 'Create' %> Product</h1>
-<form action="/admin/products<%= product._id ? '/' + product._id : '' %>" method="POST">
-  <div>
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" value="<%= product.title || '' %>" required>
+<div class="admin-content">
+  <h2><%= product._id ? 'Edit' : 'Create' %> Product</h2>
+  <div class="action-card">
+    <form action="/admin/products<%= product._id ? '/' + product._id : '' %>" method="POST">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="<%= product.title || '' %>" required>
+      </div>
+      <div class="form-group">
+        <label for="overview">Overview:</label>
+        <textarea id="overview" name="overview" required><%= product.overview || '' %></textarea>
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" value="<%= product.price || '' %>" required>
+      </div>
+      <div class="form-group">
+        <label for="detailedDescription">Detailed Description:</label>
+        <textarea id="detailedDescription" name="detailedDescription" required><%= product.detailedDescription || '' %></textarea>
+      </div>
+      <div class="form-group">
+        <label for="topicsCovered">Topics Covered:</label>
+        <textarea id="topicsCovered" name="topicsCovered" required><%= product.topicsCovered || '' %></textarea>
+      </div>
+      <div class="form-group">
+        <label for="classDetails">Class Details:</label>
+        <textarea id="classDetails" name="classDetails" required><%= product.classDetails || '' %></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
   </div>
-  <div>
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" required><%= product.description || '' %></textarea>
-  </div>
-  <div>
-    <label for="price">Price:</label>
-    <input type="number" id="price" name="price" step="0.01" value="<%= product.price || '' %>" required>
-  </div>
-  <button type="submit">Save</button>
-</form>
+</div>

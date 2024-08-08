@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  description: {
+  overview: {
     type: String,
     required: true
   },
@@ -15,7 +15,18 @@ const productSchema = new mongoose.Schema({
     required: true,
     min: 0
   },
-  // We can add more fields later as needed
+  detailedDescription: {
+    type: String,
+    required: true
+  },
+  topicsCovered: {
+    type: String,
+    required: true
+  },
+  classDetails: {
+    type: String,
+    required: true
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Product', productSchema);

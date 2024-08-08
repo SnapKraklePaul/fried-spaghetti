@@ -1,27 +1,44 @@
 <div class="course-detail-container">
-    <div class="course-detail">
-      <h1><%= course.title %></h1>
-      <div class="course-image">
-        <img src="<%= course.imageUrl || '/images/batman.png' %>" alt="<%= course.title %>">
-      </div>
-      <p class="price">Price: $<%= course.price.toFixed(2) %></p>
-      <div class="description">
-        <h2>Course Description</h2>
-        <p><%= course.description %></p>
-      </div>
-      <div class="action-area">
-        <% if (user) { %>
-          <% if (isPurchased) { %>
-            <p class="already-purchased">Already Purchased</p>
-          <% } else { %>
-            <form action="/cart/add" method="POST">
-              <input type="hidden" name="productId" value="<%= course._id %>">
-              <button type="submit" class="btn btn-primary btn-large">Add to Cart</button>
-            </form>
-          <% } %>
+  <div class="course-detail">
+    <h1><%= course.title %></h1>
+    <div class="course-image">
+      <img src="<%= course.imageUrl || '/images/batman.png' %>" alt="<%= course.title %>">
+    </div>
+    <p class="price">Price: $<%= course.price.toFixed(2) %></p>
+    
+    <div class="overview">
+      <h2>Course Overview</h2>
+      <p><%= course.overview || 'No overview available' %></p>
+    </div>
+    
+    <div class="detailed-description">
+      <h2>Detailed Description</h2>
+      <p><%= course.detailedDescription || 'No detailed description available' %></p>
+    </div>
+    
+    <div class="topics-covered">
+      <h2>Topics Covered</h2>
+      <p><%= course.topicsCovered || 'No topics listed' %></p>
+    </div>
+    
+    <div class="class-details">
+      <h2>Class Details</h2>
+      <p><%= course.classDetails || 'No class details available' %></p>
+    </div>
+    
+    <div class="action-area">
+      <% if (user) { %>
+        <% if (isPurchased) { %>
+          <p class="already-purchased">Already Purchased</p>
         <% } else { %>
-          <a href="/login" class="btn btn-info btn-large">Login to Purchase</a>
+          <form action="/cart/add" method="POST">
+            <input type="hidden" name="productId" value="<%= course._id %>">
+            <button type="submit" class="btn btn-primary btn-large">Add to Cart</button>
+          </form>
         <% } %>
-      </div>
+      <% } else { %>
+        <a href="/login" class="btn btn-info btn-large">Login to Purchase</a>
+      <% } %>
     </div>
   </div>
+</div>

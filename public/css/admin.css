@@ -160,10 +160,11 @@
 }
 
 .admin-content {
-    background-color: var(--primary-blue);
+    background-color: var(--bg-black);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 80px;
 }
 
 .search-bar {
@@ -493,6 +494,66 @@
 .order-details-content p {
     margin-bottom: 10px;
 }
+
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--light-blue);
+    border-radius: 4px;
+    background-color: var(--pure-white);
+    color: var(--bg-black);
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--light-blue);
+    border-radius: 4px;
+    background-color: var(--pure-white);
+    color: var(--bg-black);
+  }
+  
+  .question {
+    background-color: var(--primary-blue);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .question h3 {
+    color: var(--pure-white);
+    margin-bottom: 10px;
+  }
+  
+  .question input[type="text"],
+  .question select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid var(--light-blue);
+    border-radius: 4px;
+    background-color: var(--pure-white);
+    color: var(--bg-black);
+  }
+  
+  .question .options {
+    margin-bottom: 10px;
+  }
+  
+  .question button {
+    background-color: var(--primary-red);
+    color: var(--pure-white);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .question button:hover {
+    background-color: #D32F2F;
+  }
 
 @media (max-width: 768px) {
     .admin-container {

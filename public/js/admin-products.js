@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const editDiv = currentlyOpenRow.querySelector('.product-edit');
             detailsDiv.style.display = 'none';
             editDiv.style.display = 'none';
+            currentlyOpenRow = null;
         }
     }
 
@@ -133,19 +134,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 fetch(`/admin/products/${productId}`, {
                     method: 'POST',
-                    body: formData
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(Object.fromEntries(formData))
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert('Product updated successfully');
-                        location.reload();
+                        alert(data.message);
+                        updateRowData(productId, data.product);
+                        closeCurrentRow();  // Close the form after successful update
                     } else {
-                        alert('Error updating product');
+                        alert('Error updating product: ' + data.message);
                     }
                 })
                 .catch(error => console.error('Error:', error));
             });
+        }
+    }
+
+    function updateRowData(productId, productData) {
+        const row = document.querySelector(`tr[data-product-id="${productId}"]`);
+        if (row) {
+            row.querySelector('.product-title').textContent = productData.title;
+            row.querySelector('.product-price').textContent = '$' + productData.price.toFixed(2);
         }
     }
 

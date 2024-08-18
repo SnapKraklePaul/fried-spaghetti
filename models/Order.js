@@ -14,6 +14,7 @@ const orderSchema = new mongoose.Schema({
   orderID: {
     type: String,
     required: true,
+    unique: true // Ensure orderID is unique
   },
   paymentStatus: {
     type: String,
@@ -33,5 +34,8 @@ const orderSchema = new mongoose.Schema({
     default: Date.now
   }
 });
+
+// Add an index for faster queries
+orderSchema.index({ user: 1, product: 1, purchaseDate: -1 });
 
 module.exports = mongoose.model('Order', orderSchema);

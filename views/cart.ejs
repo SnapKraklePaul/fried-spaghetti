@@ -67,7 +67,9 @@
             <td>
               <form action="/cart/remove" method="POST">
                 <input type="hidden" name="productId" value="<%= item._id %>">
-                <button type="submit" class="btn btn-danger">Remove</button>
+                <button type="submit" class="btn btn-icon" title="Remove from cart">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
               </form>
             </td>
           </tr>

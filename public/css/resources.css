@@ -1,96 +1,96 @@
 :root {
-    --primary-red: #E63946;
-    --bg-black: #000000;
-    --primary-blue: #1D3557;
-    --light-blue: #457B9D;
-    --pure-white: #FFFFFF;
-    --light-grey: #dee0dd;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: var(--bg-black);
-    color: var(--pure-white);
-    line-height: 1.6;
-  }
-  
+  --primary-red: #E63946;
+  --bg-black: #000000;
+  --primary-blue: #1D3557;
+  --light-blue: #457B9D;
+  --pure-white: #FFFFFF;
+  --light-grey: #dee0dd;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-black);
+  color: var(--pure-white);
+  line-height: 1.6;
+}
+
+.resources-container {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 2rem;
+}
+
+.resources-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.resources-header h1 {
+  color: var(--pure-white);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.resources-header p {
+  color: var(--pure-white);
+  font-size: 1.1rem;
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.resource-card {
+  background-color: var(--primary-blue);
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.resource-card h2 {
+  color: var(--pure-white);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--primary-red);
+  padding-bottom: 0.5rem;
+}
+
+.resource-card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.resource-card li {
+  margin-bottom: 0.8rem;
+}
+
+.resource-card a {
+  color: var(--pure-white);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.resource-card a:hover {
+  color: var(--primary-red);
+}
+
+@media (max-width: 768px) {
   .resources-container {
-    max-width: 1200px;
-    margin: 80px auto;
-    padding: 2rem;
+    padding: 1rem;
   }
-  
-  .resources-header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-  
+
   .resources-header h1 {
-    color: var(--primary-red);
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 2rem;
   }
-  
-  .resources-header p {
-    color: var(--light-blue);
-    font-size: 1.1rem;
-  }
-  
+
   .resources-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr;
   }
-  
-  .resource-card {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 1.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .resource-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  }
-  
-  .resource-card h2 {
-    color: var(--primary-red);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid var(--primary-red);
-    padding-bottom: 0.5rem;
-  }
-  
-  .resource-card ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .resource-card li {
-    margin-bottom: 0.8rem;
-  }
-  
-  .resource-card a {
-    color: var(--light-blue);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .resource-card a:hover {
-    color: var(--pure-white);
-  }
-  
-  @media (max-width: 768px) {
-    .resources-container {
-      padding: 1rem;
-    }
-  
-    .resources-header h1 {
-      font-size: 2rem;
-    }
-  
-    .resources-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+}
